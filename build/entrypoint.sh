@@ -1,4 +1,4 @@
-#!/bin/sh -l
+#!/bin/bash
 
-sh -c "echo 'Initializing Book Build"
-sh -c "echo $INPUT_REPO_NAME"
+echo 'Initializing Book Build'
+echo $INPUT_REPO_NAME
