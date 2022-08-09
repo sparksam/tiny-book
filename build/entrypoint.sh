@@ -1,4 +1,4 @@
 #!/bin/bash
 
 echo 'Initializing Book Build'
-echo $INPUT_REPO_NAME
+enki --command all-git-pdf --repo $INPUT_REPO_NAME --book-slug 'book-slug1' --style default
