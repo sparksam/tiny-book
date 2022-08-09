@@ -16,9 +16,7 @@ jobs:
         run: |
          ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - name: Build Book
-        uses: |
-          actions/checkout@v3
-          ./build
+      - uses: actions/checkout@v3
+      - uses: ./build
         with:
           REPO_NAME: "${{ github.repository }}"
