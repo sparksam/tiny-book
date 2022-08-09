@@ -1,0 +1,16 @@
+name: "Build Book"
+description: "Build Book using Enki"
+author: "staxly@openstax.com"
+
+inputs:
+  REPO_NAME:
+    description: "Name of the repository to build"
+    required: true"
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+
+branding:
+  icon: "book"
+  color: "purple"

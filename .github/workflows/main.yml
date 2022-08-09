@@ -1,0 +1,11 @@
+name: A workflow to build books using Enki
+on: push
+jobs:
+  build:
+    name: Build book wiht Enki.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./action-a
+        with:
+          REPO_NAME: "${{ github.repository }}"
