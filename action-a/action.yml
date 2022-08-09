@@ -5,7 +5,7 @@ author: "staxly@openstax.com"
 inputs:
   REPO_NAME:
     description: "Name of the repository to build"
-    required: true"
+    required: true
 
 runs:
   using: "docker"
