@@ -4,5 +4,5 @@ echo 'Initializing Book Build'
 git clone https://github.com/openstax/enki
 cd enki
 ls -alt
-echo "./enki --command all-git-pdf --repo $INPUT_REPO_NAME --book-slug 'book-slug1' --style default"
-./enki --command all-git-pdf --repo $INPUT_REPO_NAME --book-slug 'book-slug1' --style default
+echo "IO_FETCHED=$INPUT_REPO_PATH START_AT=git-fetch-metadata dockerfiles/docker-entrypoint.sh all-git-epub "
+IO_FETCHED=$INPUT_REPO_PATH START_AT=git-fetch-metadata dockerfiles/docker-entrypoint.sh all-git-epub
