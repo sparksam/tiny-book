@@ -27,5 +27,5 @@ ls -alt $INPUT_REPO_PATH
 #ls -alt /github
 #ls -alt /opt
 #ls -alt /home
-echo "    IO_FETCH_META=/github/DATA_DIR/IO_FETCH_META    IO_ARTIFACTS=/github/DATA_DIR/IO_ARTIFACTS        IO_BOOK=/github/DATA_DIR/IO_BOOK     IO_FETCHED=$INPUT_REPO_PATH START_AT_STEP=git-fetch-metadata dockerfiles/docker-entrypoint.sh all-git-pdf"
-IO_FETCH_META=/github/DATA_DIR/IO_FETCH_META    IO_ARTIFACTS=/github/DATA_DIR/IO_ARTIFACTS       IO_BOOK=/github/DATA_DIR/IO_BOOK    IO_FETCHED=$INPUT_REPO_PATH START_AT_STEP=git-fetch-metadata dockerfiles/docker-entrypoint.sh all-git-pdf
+echo " IO_RESOURCES=/github/DATA_DIR/IO_RESOURCES   IO_FETCH_META=/github/DATA_DIR/IO_FETCH_META    IO_ARTIFACTS=/github/DATA_DIR/IO_ARTIFACTS        IO_BOOK=/github/DATA_DIR/IO_BOOK     IO_FETCHED=$INPUT_REPO_PATH START_AT_STEP=git-fetch-metadata dockerfiles/docker-entrypoint.sh all-git-pdf"
+IO_RESOURCES=/github/DATA_DIR/IO_RESOURCES IO_FETCH_META=/github/DATA_DIR/IO_FETCH_META    IO_ARTIFACTS=/github/DATA_DIR/IO_ARTIFACTS       IO_BOOK=/github/DATA_DIR/IO_BOOK    IO_FETCHED=$INPUT_REPO_PATH START_AT_STEP=git-fetch-metadata dockerfiles/docker-entrypoint.sh all-git-pdf
