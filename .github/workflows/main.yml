@@ -5,8 +5,27 @@ jobs:
     name: Build book with Enki.
     runs-on: ubuntu-latest
     steps:
+      - name: Dump GitHub context
+        id: github_context_step
+        run: echo '${{ toJSON(github) }}'
+      - name: Dump job context
+        run: echo '${{ toJSON(job) }}'
+      - name: Dump steps context
+        run: echo '${{ toJSON(steps) }}'
+      - name: Dump runner context
+        run: echo '${{ toJSON(runner) }}'
+      - name: Dump strategy context
+        run: echo '${{ toJSON(strategy) }}'
+      - name: Dump matrix context
+        run: echo '${{ toJSON(matrix) }}'
+
       - uses: actions/checkout@v3
       - uses: ./.github/build
         with:
           REPO_NAME: ${{ github.repository }}
           REPO_PATH: ${{ github.workspace }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Upload the artifact
+          path: /github/DATA_DIR/IO_ARTIFACTS/*.pdf
+          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
