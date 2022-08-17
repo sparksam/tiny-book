@@ -44,13 +44,6 @@ jobs:
           cd /github/DATA_DIR/OUTPUT/
           tar -czvf /tmp/${{ github.event.repository.name }}.tar.gz *
 
-#      - uses: actions/checkout@v3
-#      - uses: ./.github/build
-#        with:
-#          REPO_NAME: ${{ github.repository }}
-#          REPO_SHORT_NAME: ${{ github.event.repository.name }}
-#          REPO_PATH: ${{ github.workspace }}
-#          outputs: type=oci,dest/tmp
       - name: List Files in the artifact folder
         run: |
           ls -alt /tmp
