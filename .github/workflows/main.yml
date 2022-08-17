@@ -26,9 +26,7 @@ jobs:
           REPO_PATH: ${{ github.workspace }}
       - name: List Files in the artifact folder
         run: |
-          ls -alt /github/
-          ls -lat /github/DATA_DIR/
-          ls -lat /github/DATA_DIR/IO_ARTIFACTS
+          ls -alt ${{ github.workspace }}
 
       - uses: actions/upload-artifact@v3
         with:
