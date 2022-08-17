@@ -11,7 +11,7 @@ jobs:
         run: echo '${{ toJSON(github) }}'
 
       - name: List folders in the container.
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         run: |
           echo 'Initializing Book Build'
           cd /github
