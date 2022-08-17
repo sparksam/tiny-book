@@ -26,6 +26,6 @@ jobs:
           REPO_PATH: ${{ github.workspace }}
       - uses: actions/upload-artifact@v3
         with:
-          name: Upload the artifact
+          name: ${{ github.event.repository.name }}
           path: /github/DATA_DIR/IO_ARTIFACTS/
           if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
