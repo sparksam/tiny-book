@@ -6,6 +6,9 @@ inputs:
   REPO_NAME:
     description: "Name of the repository to build"
     required: true
+  REPO_SHORT_NAME:
+    description: "Short Name of the repository to build"
+    required: true
   REPO_PATH:
     description: "Path of the cloned repository"
     required: true

@@ -4,32 +4,29 @@ jobs:
   build:
     name: Build book with Enki.
     runs-on: ubuntu-latest
+    container: samuelklutse/enki_epub:latest
     steps:
       - name: Dump GitHub context
         id: github_context_step
         run: echo '${{ toJSON(github) }}'
-      - name: Dump job context
-        run: echo '${{ toJSON(job) }}'
-      - name: Dump steps context
-        run: echo '${{ toJSON(steps) }}'
-      - name: Dump runner context
-        run: echo '${{ toJSON(runner) }}'
-      - name: Dump strategy context
-        run: echo '${{ toJSON(strategy) }}'
-      - name: Dump matrix context
-        run: echo '${{ toJSON(matrix) }}'
 
-      - uses: actions/checkout@v3
-      - uses: ./.github/build
-        with:
-          REPO_NAME: ${{ github.repository }}
-          REPO_PATH: ${{ github.workspace }}
-      - name: List Files in the artifact folder
+      - name: List folders in the container.
         run: |
-          ls -alt ${{ github.workspace }}
+          ls -lat /
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: ${{ github.event.repository.name }}
-          path: /github/DATA_DIR/IO_ARTIFACTS/
-          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
+#      - uses: actions/checkout@v3
+#      - uses: ./.github/build
+#        with:
+#          REPO_NAME: ${{ github.repository }}
+#          REPO_SHORT_NAME: ${{ github.event.repository.name }}
+#          REPO_PATH: ${{ github.workspace }}
+#          outputs: type=oci,dest/tmp
+#      - name: List Files in the artifact folder
+#        run: |
+#          ls -alt ${{ github.workspace }}
+#
+#      - uses: actions/upload-artifact@v3
+#        with:
+#          name: ${{ github.event.repository.name }}
+#          path: /github/DATA_DIR/IO_ARTIFACTS/
+#          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
