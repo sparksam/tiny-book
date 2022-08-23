@@ -57,4 +57,5 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           artifacts: /tmp/${{ github.event.repository.name }}.tar.gz
-          body: "This is a test release!"
+          omitBody: True
+          tag: ${{ github.event.repository.name }}-${{ github.head_commit.timestamp}}
