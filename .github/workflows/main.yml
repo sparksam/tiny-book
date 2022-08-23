@@ -58,4 +58,4 @@ jobs:
         with:
           artifacts: /tmp/${{ github.event.repository.name }}.tar.gz
           omitBody: True
-          tag: ${{ github.event.head_commit.timestamp}}
+          tag: 1.0.0
