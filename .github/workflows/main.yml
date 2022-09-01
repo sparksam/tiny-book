@@ -10,50 +10,18 @@ jobs:
         id: github_context_step
         run: echo '${{ toJSON(github) }}'
 
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: List files in the repository
+        run: |
+          ls -alt ${{ env.WORKDIR }}
       - name: Build Book
         run: |
           echo 'Initializing Book Build'
           cd /github
-          mkdir -p /github/DATA_DIR/IO_JSONIFIED
-          mkdir -p /github/DATA_DIR/IO_DISASSEMBLE_LINKED
-          mkdir -p /github/DATA_DIR/IO_DISASSEMBLED
-          mkdir -p /github/DATA_DIR/IO_LINKED
-          mkdir -p /github/DATA_DIR/IO_BAKE_META
-          mkdir -p /github/DATA_DIR/IO_BAKED
-          mkdir -p /github/DATA_DIR/IO_ASSEMBLE_META
-          mkdir -p /github/DATA_DIR/IO_ASSEMBLED
-          mkdir -p /github/DATA_DIR/resources
-          mkdir -p /github/DATA_DIR/IO_FETCH_META
-          mkdir -p /github/DATA_DIR/IO_UNUSED_RESOURCES
-          mkdir -p /github/DATA_DIR/IO_ARTIFACTS
-          mkdir -p /github/DATA_DIR/IO_REX_LINKED
-          mkdir -p /github/DATA_DIR/IO_MATHIFIED
-          mkdir -p /github/DATA_DIR/IO_FETCHED
-          mkdir -p /github/DATA_DIR/IO_BOOK
-          mkdir -p /github/DATA_DIR/IO_EPUB
-          mkdir -p /github/DATA_DIR/INPUT_SOURCE_DIR
-          mkdir -p /github/DATA_DIR/OUTPUT
           git clone https://github.com/openstax/enki
           cd enki
-          git checkout epub
-          cd /github/DATA_DIR
+          git checkout sk-epub-fixes 
+          TRACE_ON=1 LOCAL_ATTIC_DIR=_attic TERM=xterm /github/enki/dockerfiles/enki-in-container --command all-git-pdf --repo-dir ${{ env.WORKDIR }} --style dummy
           
-          TRACE_ON=1 IO_EPUB=/github/DATA_DIR/IO_EPUB IO_JSONIFIED=/github/DATA_DIR/IO_JSONIFIED  IO_DISASSEMBLE_LINKED=/github/DATA_DIR/IO_DISASSEMBLE_LINKED  IO_DISASSEMBLED=/github/DATA_DIR/IO_DISASSEMBLED  IO_LINKED=/github/DATA_DIR/IO_LINKED  IO_BAKE_META=/github/DATA_DIR/IO_BAKE_META  IO_BAKED=/github/DATA_DIR/IO_BAKED  IO_ASSEMBLE_META=/github/DATA_DIR/IO_ASSEMBLE_META  IO_ASSEMBLED=/github/DATA_DIR/IO_ASSEMBLED  IO_RESOURCES=/github/DATA_DIR/resources  IO_FETCH_META=/github/DATA_DIR/IO_FETCH_META  IO_UNUSED_RESOURCES=/github/DATA_DIR/IO_UNUSED_RESOURCES  IO_ARTIFACTS=/github/DATA_DIR/IO_ARTIFACTS  IO_REX_LINKED=/github/DATA_DIR/IO_REX_LINKED  IO_MATHIFIED=/github/DATA_DIR/IO_MATHIFIED    IO_BOOK=/github/DATA_DIR/IO_BOOK  INPUT_SOURCE_DIR=/github/DATA_DIR/INPUT_SOURCE_DIR   IO_FETCHED=/github/DATA_DIR/IO_FETCHED INPUT_SOURCE_DIR=/github/DATA_DIR/INPUT_SOURCE_DIR LOCAL_SIDELOAD_REPO_PATH=${{ github.workspace }} /github/enki/dockerfiles/docker-entrypoint.sh all-git-epub ${{ github.repository }}/book-slug1 default main
-          
-          mv  /tmp/test.epub /tmp/tiny-book.pdf
 
-      - name: List Files in the artifact folder
-        run: |
-          ls -alt /tmp
-#
-      - uses: actions/upload-artifact@v3
-        with:
-          name: ${{ github.event.repository.name }}
-          path: /tmp/tiny-book.pdf
-          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
-
-      - uses: ncipollo/release-action@v1
-        with:
-          artifacts: /tmp/tiny-book.pdf
-          omitBody: True
-          tag: 1.0.0
