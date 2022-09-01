@@ -20,7 +20,7 @@ jobs:
           git clone https://github.com/openstax/enki
           cd enki
           git checkout sk-epub-fixes 
-          TRACE_ON=1 LOCAL_ATTIC_DIR=_attic TERM=xterm /github/enki/dockerfiles/enki-in-container --command all-git-epub --repo-dir ${{ env.WORKDIR }} --style dummy
+          TRACE_ON=1 LOCAL_ATTIC_DIR=_attic TERM=xterm /github/enki/dockerfiles/enki-in-container --command all-git-epub --repo-dir ${{ env.WORKDIR }} --style dummy --book-slug 'book-slug1' 
 
       - name: Bump version and push tag
         id: tag_version
